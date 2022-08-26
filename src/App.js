@@ -46,8 +46,9 @@ function App() {
   };
 
   const deleteHandler = (entryId) => {
-    console.log('entryId', entryId);
-  }
+    const newEntriesList = entriesList.filter(entry => entry.id !== entryId);
+    setEntriesList([...newEntriesList]);
+  };
 
   return (
     <div className="App">
