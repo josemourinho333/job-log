@@ -7,7 +7,7 @@ import {v4 as uuidv4 } from 'uuid';
 function App() {
 
   const [entriesList, setEntriesList] = useState(
-    [...JSON.parse(localStorage.getItem('entries_list'))]
+    JSON.parse(localStorage.getItem('entries_list'))
     ? [...JSON.parse(localStorage.getItem('entries_list'))]
     : []
   );
