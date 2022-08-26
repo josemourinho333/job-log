@@ -1,23 +1,58 @@
-import logo from './logo.svg';
 import './App.css';
+import Navigation from './components/Navigation';
+import Form from './components/Form';
+import { useState, useEffect } from 'react';
+import {v4 as uuidv4 } from 'uuid';
 
 function App() {
+  const [entriesList, setEntriesList] = useState([...JSON.parse(localStorage.getItem('entries_list'))]);
+
+  const [entry, setEntry] = useState({
+    date: '',
+    company: '',
+    research: false,
+    addOnLinkedIn: false,
+    interviewOne: {
+      date: ''
+    },
+    interviewTwo: {
+      date: ''
+    },
+    assessment: {
+      date: ''
+    },
+    jobLink: ''
+  });
+
+  useEffect(() => {
+    localStorage.setItem('entries_list', JSON.stringify(entriesList));
+  }, [entriesList]);
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    console.log('values', entry);
+    if (entry.date === '' || entry.company === '' || entry.link === '') {
+      console.log('Required fields');
+    } else {
+      const addEntry = {
+      id: uuidv4(),
+      ...entry
+      };
+      setEntriesList(prev => ([
+        ...prev,
+        addEntry
+      ]));
+    };
+  };
+
+  const deleteHandler = (entryId) => {
+    console.log('entryId', entryId);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Form  submitHandler={submitHandler} entry={entry} setEntry={setEntry} /> 
+      <Navigation entriesList={entriesList} deleteHandler={deleteHandler}/>
     </div>
   );
 }

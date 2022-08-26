@@ -1,38 +1,133 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #222831;
+  color: #eeeeee;
+}
+
 .App {
-  text-align: center;
+  display: grid;
+  height: 100vh;
+  grid-template-columns: 25% 75%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.navigation-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-items: center;
+  border-bottom: 1px solid #393E46;
+  /* padding: 1.5rem; */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.navigation-container > button {
+  background-color: #393E46;
+  border: none;
+  width: 100%;
+  color: #FFD369;
+  padding: 1.5rem;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.navigation-container > button:hover {
+  background-color: #FFD369;
+  border: none;
+  width: 100%;
+  color: #393E46;
+  padding: 1.5rem;
+  cursor: pointer;
+}
+
+.form-container {
+  border-right: 1px solid #393E46;
+}
+
+.log-entry-form {
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
+  height: 100%;
+}
+
+.log-entry-form > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 100%;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-items: stretch;
 }
 
-.App-link {
-  color: #61dafb;
+.log-entry-form > div > label {
+  font-size: 1.25rem;
+  font-weight: 300;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.log-entry-form > div > input {
+  width: 90%;
+  height: 50%;
+  border-radius: 10px;
+  padding: 0.5rem;
+  font-size: 1rem;
 }
+
+.research > input,
+.addOnLinkedIn > input {
+  margin-left: 1rem;
+}
+
+.entries-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.columns-container {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(6, 1fr);
+  justify-items: center;
+  font-size: 1rem;
+  font-weight: 700;
+  border-bottom: 1px solid #393E46;
+  padding: 0.5rem;
+}
+
+.entry-item {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  justify-items: center;
+  padding: 0.25rem;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.entry-actions {
+  display: flex;
+  align-items: center;
+}
+
+.edit-icon {
+  margin: 0 0.5rem;
+  cursor: pointer;
+}
+
+.delete-icon {
+  margin: 0 0.5rem;
+  cursor: pointer;
+}
+
+.edit-icon:hover,
+.delete-icon:hover,
+.entry-link:hover {
+  color: #FFD369;
+}
+
+.required {
+  color: red;
+}
+
+
