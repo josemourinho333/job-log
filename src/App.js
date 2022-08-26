@@ -24,24 +24,50 @@ function App() {
     jobLink: ''
   });
 
+  const initialEntry = {
+    date: '',
+    company: '',
+    research: false,
+    addOnLinkedIn: false,
+    interviewOne: {
+      date: ''
+    },
+    interviewTwo: {
+      date: ''
+    },
+    assessment: {
+      date: ''
+    },
+    jobLink: ''
+  };
+
   useEffect(() => {
     localStorage.setItem('entries_list', JSON.stringify(entriesList));
   }, [entriesList]);
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log('values', entry);
-    if (entry.date === '' || entry.company === '' || entry.link === '') {
-      console.log('Required fields');
+    if (entry.id) {
+      const oldId = entry.id;
+      const newList = entriesList.filter(entry => entry.id !== oldId);
+      const updatedList = [...newList, entry];
+      setEntriesList([...updatedList]);
+      setEntry({...initialEntry});
     } else {
-      const addEntry = {
-      id: uuidv4(),
-      ...entry
+      if (entry.date === '' || entry.company === '' || entry.link === '') {
+      console.log('Required fields');
+      } else {
+        const addEntry = {
+        id: uuidv4(),
+        ...entry
+        };
+        setEntriesList(prev => ([
+          ...prev,
+          addEntry
+        ]));
+
+        setEntry({...initialEntry});
       };
-      setEntriesList(prev => ([
-        ...prev,
-        addEntry
-      ]));
     };
   };
 
@@ -50,10 +76,15 @@ function App() {
     setEntriesList([...newEntriesList]);
   };
 
+  const editHandler = (entryData) => {
+    console.log('entryId', entryData);
+    setEntry({...entryData});
+  };
+
   return (
     <div className="App">
       <Form  submitHandler={submitHandler} entry={entry} setEntry={setEntry} /> 
-      <Navigation entriesList={entriesList} deleteHandler={deleteHandler}/>
+      <Navigation entriesList={entriesList} deleteHandler={deleteHandler} editHandler={editHandler}/>
     </div>
   );
 }

@@ -16,8 +16,9 @@ const Entries = (props) => {
         interviewOne={item.interviewOne}
         interviewTwo={item.interviewTwo}
         assessment={item.assessment}
-        link={item.jobLink}
+        jobLink={item.jobLink}
         deleteHandler={props.deleteHandler}
+        editHandler={props.editHandler}
       />
     )
   });

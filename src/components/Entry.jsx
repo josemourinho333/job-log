@@ -16,11 +16,11 @@ const Entry = (props) => {
     <div className='entry-item' id={props.id} style={bgColor}>
       <div className="entry-date">{moment(props.date).format('l')}</div>
       <div className="entry-company">{props.company}</div>
-      <div className="entry-link"><a href={props.link} target="_blank" rel="noopener noreferrer"><HiLink /></a></div>
+      <div className="entry-link"><a href={props.jobLink} target="_blank" rel="noopener noreferrer"><HiLink /></a></div>
       <div className="entry-research">{props.research ? 'yes' : 'no'}</div>
       <div className="entry-linkedIn">{props.linkedIn ? 'yes' : 'no'}</div>
       <div className="entry-actions">
-        <HiOutlinePencilAlt className='edit-icon'/>
+        <HiOutlinePencilAlt className='edit-icon' onClick={() => props.editHandler(props)}/>
         <HiOutlineX className='delete-icon' onClick={() => props.deleteHandler(props.id)}/>
       </div>
     </div>

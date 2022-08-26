@@ -11,7 +11,7 @@ const Navigation = (props) => {
         <button className="secondInterview-btn">2nd Stage</button>
         <button className="assessment-btn">Assessment</button>
       </div>
-      <Entries entriesList={props.entriesList} deleteHandler={props.deleteHandler}/>
+      <Entries entriesList={props.entriesList} deleteHandler={props.deleteHandler} editHandler={props.editHandler} />
     </div>
   )
 }
